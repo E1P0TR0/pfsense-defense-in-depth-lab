@@ -1,0 +1,46 @@
+# El repositorio conserva documentación, no máquinas ni secretos.
+*.vmdk
+*.vdi
+*.vhd
+*.vhdx
+*.vmem
+*.vmsn
+*.vmss
+*.vmxf
+*.vmx
+*.nvram
+*.iso
+*.ova
+*.ovf
+*.lck/
+*.pcap
+*.pcapng
+*.docx
+*.pptx
+*.zip
+*.7z
+*.tar
+*.gz
+
+# Respaldos y material criptográfico operativo
+config.xml
+config-*.xml
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+.env
+.env.*
+*passwords*
+*credentials*
+*secret*
+
+# Entornos y archivos locales
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+~$*
