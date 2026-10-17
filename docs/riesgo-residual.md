@@ -17,18 +17,17 @@ Esta matriz es cualitativa. No se asignan puntuaciones ni probabilidades numéri
 | DoS por intermediario sin reenvío | No mitigado en el trabajo | Riesgo abierto | Probar disponibilidad y mitigaciones L2 |
 | Vulnerabilidades en Metasploitable2/DVWA | No corregidas | Riesgo deliberadamente conservado | No exponer; mantener aislamiento del laboratorio |
 | Criptografía legacy | Excepciones por compatibilidad | Limitación reconocida | Sustituir objetivos o versiones para una implementación moderna |
-| Auditoría y RDP Windows | Descritos en la narrativa | No validados con evidencia específica | Capturar políticas, reglas, pruebas positivas/negativas y eventos |
 
 ## 2. Mejoras propuestas, no ejecutadas
 
 ### Prioridad A — Calidad de evidencia
 
 - Confirmar la versión de cada componente y registrar una línea base.
-- Resolver `.2` frente a `.100` en inventario, reglas y procedimientos.
+- Resolver `.2`, `.50` y `.100` en inventario, diagrama, reglas y procedimientos; revisar también `.3` frente a `.30` para el cliente no autorizado.
 - Repetir pruebas con direcciones y rutas controladas: `Network is unreachable` no prueba por sí solo un bloqueo de pfSense.
 - Conservar salidas y registros con fecha, origen, destino y criterio de éxito, sin secretos.
 - Añadir pruebas negativas de root y contraseña para SSH.
-- Incorporar la evidencia pendiente de Windows.
+- Depurar la fila residual Windows del anexo 2 si se vuelve a editar el informe académico; no incorporarla como control ni prueba del miniproyecto.
 
 ### Prioridad B — Límite del segmento local
 
@@ -53,12 +52,15 @@ RFC 8996 establece que TLS 1.0 y 1.1 no deben usarse. La evidencia legacy se con
 - Que una MAC autorizada equivalga a una identidad autenticada.
 - Que el cifrado evite todos los ataques MitM sin validación del servidor.
 - Que los logs locales sean inalterables.
-- Que un bloqueo en red siempre produzca un evento 4625 en Windows.
 - Que fail2ban impida ataques desde todas las fuentes o con credenciales válidas.
 - Que la configuración sea restaurable sin un respaldo operativo separado.
 
-## 4. Criterio de cierre
+## 4. Alcance de esta corrección
+
+Windows, RDP y la auditoría de Windows se retiraron del desarrollo del informe corregido. Por tanto, ya no se enumeran como controles realizados ni como validaciones pendientes del laboratorio. La referencia que aún existe en el anexo se señala como residual.
+
+## 5. Criterio de cierre
 
 El miniproyecto cumple un objetivo documental: explicar decisiones y mostrar evidencia seleccionada con límites. El cierre del laboratorio no equivale a cerrar todos sus riesgos.
 
-La eliminación de VM es una decisión separada. No se ha eliminado ninguna máquina. Si se borran, se pierde su estado salvo que exista otro respaldo; el informe y las capturas no lo reemplazan.
+La eliminación de VM es una decisión separada. Este repositorio conserva el informe y sus evidencias, no el estado de las máquinas. Si se borran sin otro respaldo, sus archivos internos, instantáneas y configuración operativa no pueden recuperarse a partir de este miniproyecto.

@@ -4,6 +4,8 @@
 
 Miniproyecto documental derivado del TB1 de **Fundamentos en Ciberseguridad — UPC, Grupo 2**. Su objetivo es comunicar el problema, las decisiones defensivas, la evidencia antes/después y los riesgos que permanecen. No es una imagen de las máquinas ni una configuración lista para producción.
 
+> **Fuente vigente:** informe corregido aportado por el usuario; sustituye la selección anterior. Véase [historial de correcciones](CHANGELOG.md).
+
 > **Estado:** laboratorio académico documentado. Las pruebas pertenecen al trabajo original; no se volvieron a ejecutar al preparar este repositorio. No contiene discos virtuales, credenciales ni respaldos de configuración completos.
 
 ## Resumen ejecutivo
@@ -22,10 +24,9 @@ flowchart TB
     FW --> CORP["VMnet3 · Corporativa · 192.168.30.0/24"]
     MGMT --> KALI["Kali · estación administrativa / auditoría"]
     CORP --> LINUX["Metasploitable2 · servicios deliberadamente vulnerables"]
-    CORP --> WINDOWS["Windows 10 · endpoint de laboratorio"]
 ```
 
-**Importante:** el inventario inicial usa hosts `.2`; las pruebas utilizan también `.100`. Esta diferencia se conserva y explica en [Arquitectura](docs/arquitectura.md), sin inventar una configuración final homogénea.
+**Alcance actualizado:** pfSense, Kali y Metasploitable2. El diagrama corregido utiliza `.50` para los hosts autorizados; los anexos conservan `.2` y algunas capturas `.100`. Estas diferencias se documentan en [Arquitectura](docs/arquitectura.md), sin atribuir a Windows pruebas que no forman parte del desarrollo corregido.
 
 ## Controles y resultados
 
@@ -36,7 +37,6 @@ flowchart TB
 | SSH por clave | Configuración y acceso exitoso con clave explícita | Servidor legado y excepciones de compatibilidad |
 | HTTPS | Captura con negociación TLS y carga cifrada | TLS 1.0: demostración histórica, no perfil de producción |
 | fail2ban | Parámetros y registro de bloqueo | Bloqueo reactivo; 30 segundos usados para prueba |
-| RDP y auditoría Windows | Descritos en el informe original | No se conserva evidencia específica suficiente para declarar su validación |
 
 ## Recorrido del proyecto
 

@@ -2,20 +2,17 @@
   "sources": [
     {
       "filename": "UPC-PRE-202620-1ACB0025-7615-INFORME-TB1-Grupo2.docx",
-      "bytes": 5477084,
-      "sha256": "c434106a4fdbdd437403b7abcbeb125d20fd5969a5aeba2ec699f079e7a6ee20",
-      "included_in_repository": false
-    },
-    {
-      "filename": "PFSENSE INSTALLATION.txt",
-      "bytes": 7506,
-      "sha256": "5ff3a96c9e5687b9242431e63e7727d37d1ebb08489e80730b6e4ab7bf05c9cf",
-      "included_in_repository": false
+      "bytes": 5345555,
+      "sha256": "f84055c522b1dc8c49b2b9bdf8a3d4c64303c821f1739f0a69878454f6d3d5e1",
+      "included_in_repository": false,
+      "role": "authoritative_corrected_report"
     }
   ],
-  "original_images_reviewed": 43,
+  "source_unique_images": 42,
+  "source_image_occurrences": 43,
   "selected_images": 15,
-  "remaining_images_excluded": 28,
+  "remaining_unique_images_excluded": 27,
   "config_backup_included": false,
-  "virtual_machines_included": false
+  "virtual_machines_included": false,
+  "revision_note": "Corrected report supersedes the source of the initial publication; 14 retained screenshots matched by source SHA-256; architecture replaced."
 }

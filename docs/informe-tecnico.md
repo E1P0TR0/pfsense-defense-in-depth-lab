@@ -10,7 +10,7 @@ El proyecto estudió dos problemas relacionados: la conectividad de un dispositi
 
 La estrategia combinó protección del gateway, filtrado de servicios, autenticación SSH por clave, cifrado web y controles locales de autenticación. La selección de capturas permite revisar parte de los cambios y sus resultados; las afirmaciones del informe original que no tienen evidencia suficiente se mantienen como **declaradas**, no como verificadas.
 
-Este documento es una adaptación profesional del trabajo académico, no un acta de ejecución nueva. No se iniciaron máquinas, escáneres ni servicios al elaborarlo.
+Esta edición se basa en el informe corregido aportado por el usuario, que sustituye la fuente seleccionada para la primera publicación. Es una adaptación profesional del trabajo académico, no un acta de ejecución nueva. No se iniciaron máquinas, escáneres ni servicios al elaborarlo.
 
 ## 2. Objetivos y alcance
 
@@ -30,13 +30,13 @@ Documentar cómo controles complementarios pueden reducir riesgos de acceso no a
 
 ### Fuera del alcance
 
-No se evaluaron todos los servicios, no se corrigieron las vulnerabilidades de Metasploitable2/DVWA, no se realizó una auditoría integral de Windows y no se implementaron controles de switch administrable. La documentación no demuestra una política completa de filtrado saliente ni una validación exhaustiva de todas las reglas.
+No se evaluaron todos los servicios, no se corrigieron las vulnerabilidades de Metasploitable2/DVWA y no se implementaron controles de switch administrable. Windows, RDP y eventos de auditoría Windows no se incluyen como componentes ni controles del desarrollo corregido. La documentación no demuestra una política completa de filtrado saliente ni una validación exhaustiva de todas las reglas.
 
 ## 3. Entorno
 
-La arquitectura declarada utiliza VMware Workstation Pro. pfSense conecta WAN por NAT, LAN–Gestión en VMnet2 (`192.168.20.0/24`) y CORPORATIVA en VMnet3 (`192.168.30.0/24`). Kali representa una estación administrativa/de auditoría y los objetivos incluyen Metasploitable2 y Windows 10 Pro.
+La arquitectura declarada utiliza VMware Workstation Pro. pfSense conecta WAN por NAT, LAN–Gestión en VMnet2 (`192.168.20.0/24`) y CORPORATIVA en VMnet3 (`192.168.30.0/24`). Kali representa las estaciones de administración/auditoría y de prueba no autorizada; Metasploitable2 es el servidor corporativo descrito en el cuerpo del informe y en el diagrama corregido.
 
-El informe identifica pfSense como 2.9.0. Se registra esa versión como declarada por el trabajo, sin contrastarla contra una instancia activa. La topología usa `.2` para Kali y Metasploitable, mientras varias pruebas usan `.100`. La [documentación de arquitectura](arquitectura.md) conserva la discrepancia; no se ha supuesto un estado final.
+El informe identifica pfSense como 2.9.0. Se registra esa versión como declarada por el trabajo, sin contrastarla contra una instancia activa. El nuevo diagrama usa `192.168.20.50` para la estación administrativa, `192.168.20.3` para la no autorizada y `192.168.30.50` para el servidor. La tabla del anexo 2 aún usa `.2` y conserva una fila Windows; varias capturas usan `.100` y `.30`. La [documentación de arquitectura](arquitectura.md) distingue esos niveles de evidencia sin inventar un estado final.
 
 ## 4. Escenario de riesgo
 
@@ -96,11 +96,9 @@ Se documenta un jail para SSH con tres reintentos y un bloqueo de 30 segundos pa
 
 Las notas complementarias mencionan otros tiempos y nombres de jail. Se toma como referencia de la prueba el valor mostrado en la captura, sin imponerlo como una política adecuada para cualquier entorno.
 
-### C-06. Windows: RDP y auditoría
+### Delimitación del alcance corregido
 
-El informe describe filtrado de RDP por IP y auditoría de autenticación con eventos 4624/4625. No se dispone de capturas específicas suficientes dentro de la evidencia conservada para validar esas medidas. Se mantienen como **controles declarados pendientes de evidencia**, no como resultados demostrados.
-
-Se evita la afirmación del texto original de que los registros son inalterables: la política de auditoría, los permisos, la retención y la protección de registros deben evaluarse. No todo bloqueo de red se traduce necesariamente en un evento de autenticación fallida.
+Se retiran de esta edición los controles de RDP, los eventos 4624/4625 y la auditoría de Windows que se habían trasladado desde el informe anterior. No se convierten en tareas pendientes del proyecto: ya no forman parte de su desarrollo. La fila Windows que aún aparece en el anexo 2 se registra únicamente como una referencia residual del documento fuente.
 
 ## 6. Validación y resultados
 
@@ -112,7 +110,6 @@ Se evita la afirmación del texto original de que los registros son inalterables
 | ¿Se logró acceso SSH usando una clave? | Comando y sesión exitosa | Acceso observado; no verifica todos los métodos alternativos |
 | ¿La captura seguía mostrando credenciales legibles tras la migración? | Flujos SSH/TLS seleccionados | La carga mostrada no es legible como las comunicaciones iniciales descritas |
 | ¿Actuó fail2ban? | Parámetros y log con bloqueo | Acción de bloqueo documentada en el escenario |
-| ¿Se validó la auditoría/RDP de Windows? | Narrativa sin evidencia específica suficiente | Pendiente |
 
 La selección se detalla en [Evidencias](evidencias.md). Se excluyen capturas con contraseñas, cookies o resultados sensibles y no se publican archivos de captura completos.
 
@@ -128,5 +125,5 @@ La compatibilidad criptográfica legacy, la falta de una exportación operativa 
 2. Static ARP en pfSense no debe presentarse como una solución integral contra ARP spoofing en toda la LAN.
 3. El acceso SSH por clave y el cambio de protocolos reducen exposición en el caso evaluado, sin corregir las aplicaciones deliberadamente vulnerables.
 4. fail2ban aporta una reacción documentada a intentos fallidos, no garantía ante cualquier abuso de credenciales.
-5. Las afirmaciones sobre Windows y la configuración exacta requieren evidencia adicional.
+5. El alcance técnico vigente es pfSense y Linux. La fila residual de Windows del anexo y las diferencias de IP no se convierten en controles o pruebas realizados.
 6. El resultado más valioso es la trazabilidad: problema, control, prueba, limitación y siguiente paso. Una configuración funcional no equivale a seguridad absoluta.
